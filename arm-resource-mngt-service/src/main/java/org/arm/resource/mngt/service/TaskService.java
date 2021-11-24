@@ -7,8 +7,10 @@ import org.arm.resource.mngt.entity.Task;
 import org.arm.resource.mngt.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 @Service
-public class ITaskServiceImpl implements ITaskService {
+@Transactional
+public class TaskService implements ITaskService {
 
 	@Autowired
 	TaskRepository taskRepository;

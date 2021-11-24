@@ -1,6 +1,7 @@
 package org.arm.resource.mngt;
 
 import org.arm.resource.mngt.service.CampaignService;
+import org.arm.resource.mngt.service.IAvailableService;
 import org.arm.resource.mngt.service.IProjectService;
 import org.arm.resource.mngt.service.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class ArmRMSApplication implements CommandLineRunner {
 	@Autowired
 	ITaskService taskService;
 	
+	@Autowired
+	IAvailableService availableService;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -34,5 +37,7 @@ public class ArmRMSApplication implements CommandLineRunner {
 		cmpService.getAllCampaign().forEach(System.out:: println);
 		projectService.getAllProject().forEach(System.out:: println);
 		taskService.getAllTask().forEach(System.out:: println);
+		availableService.getAll().forEach(System.out::println);
+		//availableService.getDuration().forEach(System.out::println);
 	}
 }

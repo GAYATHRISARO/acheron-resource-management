@@ -1,0 +1,1 @@
+insert into available(resource_id,start_date,end_date,customhours,leave_count,availableStatus) values(1,'2021-11-24 10:23:24','2021-11-24 16:23:24',250,0,'AVAILABLE');

@@ -14,6 +14,7 @@ public class CampaignController {
 	@Autowired
 	private ICampaignService campaignService;
 	
+	
 	@GetMapping("/campaign")
 	public List<Campaign> allC(){
 		return campaignService.getAllCampaign();
