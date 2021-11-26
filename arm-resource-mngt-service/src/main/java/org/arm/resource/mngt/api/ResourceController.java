@@ -34,19 +34,19 @@ public class ResourceController {
 //	public List<Resource> getAllResources(){
 //		return resourceService.;
 //	}
-	@GetMapping("/resources")
-	ResponseEntity<List<ResourceVO>> getAllResource() {
-				List<ResourceVO> resourceVO = new ArrayList<ResourceVO>();
-				List<Resource> allResource = resourceService.findAll();
-				HttpHeaders headers = new HttpHeaders();
-				headers.add("desc", "Get");
-				for (Resource resource : allResource) {
-					ResourceMapper mapper = ResourceMapper.INSTANCE;
-					ResourceVO vo = mapper.fromResource(resource);
-					//ResourceVO.add(vo);
-				}
-				return ResponseEntity.status(HttpStatus.OK).headers(headers).body(resourceVO);
-			}
+//	@GetMapping("/resources")
+//	ResponseEntity<List<ResourceVO>> getAllResource() {
+//				List<ResourceVO> resourceVO = new ArrayList<ResourceVO>();
+//				List<Resource> allResource = resourceService.findAll();
+//				HttpHeaders headers = new HttpHeaders();
+//				headers.add("desc", "Get");
+//				for (Resource resource : allResource) {
+//					ResourceMapper mapper = ResourceMapper.INSTANCE;
+//					ResourceVO vo = mapper.fromResource(resource);
+//					//ResourceVO.add(vo);
+//				}
+//				return ResponseEntity.status(HttpStatus.OK).headers(headers).body(resourceVO);
+//			}
 	
 //	@GetMapping("/campaign")
 //	ResponseEntity<List<CampaignVO>> getCampaign() {
