@@ -18,31 +18,16 @@ public class HelloWorld {
 	
 	@Value("${config.message:Config Server is not working. Please check...}")
 	private String msg;
-
-	@Autowired
-	private ICampaignService campaignService;
-	
-	@Autowired
-	private IProjectService projectService;
-	@RefreshScope
 	@GetMapping("/employees")
 	List<Employee> all() {
 
 		List<Employee> elist = new ArrayList<>();
 		Employee e = new Employee();
-		//e.setName(msg);
-		e.setName("Ayan");
+	e.setName(msg);
+		//e.setName("Ayan");
 		elist.add(e);
 		return elist;
 	}
-@GetMapping("/c")
-public List<Campaign> allC(){
-	return campaignService.getAllCampaign();
 }
 
-@GetMapping("/t")
-public List<Project> allt(){
-	return projectService.getAllProject();
-}
 
-}

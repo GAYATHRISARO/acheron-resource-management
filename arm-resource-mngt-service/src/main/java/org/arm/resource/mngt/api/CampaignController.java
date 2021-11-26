@@ -8,6 +8,8 @@ import org.arm.resource.mngt.entity.Campaign;
 import org.arm.resource.mngt.entity.Priority;
 import org.arm.resource.mngt.entity.Status;
 import org.arm.resource.mngt.service.ICampaignService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +20,8 @@ public class CampaignController {
 	@Autowired
 	private ICampaignService campaignService;
 	
+	Logger logger = LoggerFactory.getLogger(CampaignController.class);
+	
 	@GetMapping("/campaign")
 	public List<Campaign> allCampaign(){
 		return campaignService.getAllCampaign();
@@ -25,6 +29,7 @@ public class CampaignController {
 	
 	@PostMapping("/campaign/create")
 	public void createCampaign(){
+		logger.info("Campaign logging");
 		Campaign campaign = new Campaign();
 		campaign.setCampaignName("Campaign1");
 		campaign.setCampaignOwner("Test");
