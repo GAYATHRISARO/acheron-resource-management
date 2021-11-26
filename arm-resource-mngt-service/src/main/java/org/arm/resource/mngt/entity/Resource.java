@@ -4,12 +4,17 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,11 +22,14 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Setter
-@Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @ToString
+@JsonIdentityInfo(
+		   generator = ObjectIdGenerators.PropertyGenerator.class,
+		   property = "resourceId")
 public class Resource {
 
 	@Id
@@ -29,61 +37,103 @@ public class Resource {
 	private int resourceId;
 	private String resourceName;
 	private String resourceType;
-	private String availability;
+	private String resourceImage;
 	private Timestamp createDate;
 	private Timestamp updateDate;
 	private int isDeleted;
+	
+	
 	@OneToMany(mappedBy="resource")
-	@JsonBackReference
+	//@JsonBackReference
 	private List<Task> taskList;
 	
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="available_id")
+	private Availability availability;
+	
+	@OneToOne
+	@JoinColumn(name="leave_id")
+	private Leaves leave;
+
 	public int getResourceId() {
 		return resourceId;
 	}
+
 	public void setResourceId(int resourceId) {
 		this.resourceId = resourceId;
 	}
+
 	public String getResourceName() {
 		return resourceName;
 	}
+
 	public void setResourceName(String resourceName) {
 		this.resourceName = resourceName;
 	}
+
 	public String getResourceType() {
 		return resourceType;
 	}
+
 	public void setResourceType(String resourceType) {
 		this.resourceType = resourceType;
 	}
-	public String getAvailability() {
-		return availability;
+
+	public String getResourceImage() {
+		return resourceImage;
 	}
-	public void setAvailability(String availability) {
-		this.availability = availability;
+
+	public void setResourceImage(String resourceImage) {
+		this.resourceImage = resourceImage;
 	}
+
 	public Timestamp getCreateDate() {
 		return createDate;
 	}
+
 	public void setCreateDate(Timestamp createDate) {
 		this.createDate = createDate;
 	}
+
 	public Timestamp getUpdateDate() {
 		return updateDate;
 	}
+
 	public void setUpdateDate(Timestamp updateDate) {
 		this.updateDate = updateDate;
 	}
+
 	public int getIsDeleted() {
 		return isDeleted;
 	}
+
 	public void setIsDeleted(int isDeleted) {
 		this.isDeleted = isDeleted;
 	}
+
 	public List<Task> getTaskList() {
 		return taskList;
 	}
+
 	public void setTaskList(List<Task> taskList) {
 		this.taskList = taskList;
 	}
+
+	public Availability getAvailability() {
+		return availability;
+	}
+
+	public void setAvailability(Availability availability) {
+		this.availability = availability;
+	}
+
+	public Leaves getLeave() {
+		return leave;
+	}
+
+	public void setLeave(Leaves leave) {
+		this.leave = leave;
+	}
+	
 	
 }
